@@ -1,6 +1,45 @@
+The main branch in this clone is 'corte'. The other branches are tracking the fork (upstream). This clone is a customized version for: 
+
+- Extratorrent 
+- Transmission 
+- Pushbullet 
+
+# Optimizations compared to default sickrage
+
+- Added target directory with show name when adding torrent to transmission 
+
+## Run Sickrage at at boot 
+
+Remove previous autostart (if any):
+
+`sudo rm /etc/init.d/sickrage`  
+`sudo rm /etc/default/sickrage`  
+`sudo update-rc.d -f sickrage remove`  
+  
+Copy init file from sickrage folder (assuming you are cloning sickrage from github into your home folder):
+
+`sudo cp ~/SickRage/runscripts/init.ubuntu /etc/init.d/sickrage`  
+`sudo chmod +x /etc/init.d/sickrage`  
+  
+Create file /etc/default/sickrage. Add the folllowing to the file: 
+
+SR_HOME=/home/\<USER\>/SiCKRAGE/  
+SR_DATA=/home/\<USER\>/.sickrage/  
+SR_USER=\<USER\>  
+
+Add sickrage to boot sequence: 
+
+`sudo update-rc.d sickrage defaults`
+
+Boot the service using: 
+
+`sudo service sickrage start`
+
 SickRage [![Build Status](https://travis-ci.org/SickRage/SickRage.svg?branch=develop)](https://travis-ci.org/SickRage/SickRage) [![Average time to resolve an issue](http://isitmaintained.com/badge/resolution/SickRage/SickRage.svg)](http://isitmaintained.com/project/SickRage/SickRage "Average time to resolve an issue") [![Percentage of issues still open](http://isitmaintained.com/badge/open/SickRage/SickRage.svg)](http://isitmaintained.com/project/SickRage/SickRage "Percentage of issues still open") [![Coverage Status](https://coveralls.io/repos/SickRage/SickRage/badge.svg?branch=develop&service=github)](https://coveralls.io/github/SickRage/SickRage?branch=develop)  
 =====
 Automatic Video Library Manager for TV Shows. It watches for new episodes of your favorite shows, and when they are posted it does its magic.
+
+
 
 #### Features
  - Kodi/XBMC library updates, poster/banner/fanart downloads, and NFO/TBN generation
