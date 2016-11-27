@@ -1,0 +1,13 @@
+# Update master branch 
+git checkout master 
+git fetch upstream 
+git merge upstream/master 
+git push 
+
+# Merge master 
+git checkout corte
+git merge master
+
+# Commit & Push changed 
+git commit -m "Merged version ..."
+git push 
