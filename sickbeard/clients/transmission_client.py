@@ -71,7 +71,7 @@ class TransmissionAPI(GenericClient):
             'paused': 1 if sickbeard.TORRENT_PAUSED else 0
         }
         if os.path.isabs(sickbeard.TORRENT_PATH):
-            arguments['download-dir'] = sickbeard.TORRENT_PATH
+            arguments['download-dir'] = sickbeard.TORRENT_PATH + "/" + result.showName + "/"
 
         post_data = json.dumps({'arguments': arguments,
                                 'method': 'torrent-add'})
@@ -88,7 +88,7 @@ class TransmissionAPI(GenericClient):
         }
 
         if os.path.isabs(sickbeard.TORRENT_PATH):
-            arguments['download-dir'] = sickbeard.TORRENT_PATH
+            arguments['download-dir'] = sickbeard.TORRENT_PATH + "/" + result.showName + "/"
 
         post_data = json.dumps({'arguments': arguments,
                                 'method': 'torrent-add'})
