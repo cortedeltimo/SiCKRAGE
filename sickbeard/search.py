@@ -696,6 +696,7 @@ def searchProviders(show, episodes, manualSearch=False, downCurQuality=False):  
         wantedEpCount = 0
         for wantedEp in episodes:
             for result in finalResults:
+		result.showName = show.name
                 if wantedEp in result.episodes and isFinalResult(result):
                     wantedEpCount += 1
 
