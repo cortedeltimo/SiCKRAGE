@@ -139,6 +139,7 @@ class DailySearchQueueItem(generic_queue.QueueItem):
                 for result in foundResults:
                     # just use the first result for now
                     logger.log(u"Downloading " + result.name + " from " + result.provider.name)
+		    result.showName = self.show.name
                     self.success = search.snatchEpisode(result)
 
                     # give the CPU a break
@@ -177,6 +178,7 @@ class ManualSearchQueueItem(generic_queue.QueueItem):
             if searchResult:
                 # just use the first result for now
                 logger.log(u"Downloading " + searchResult[0].name + " from " + searchResult[0].provider.name)
+		result.showName = self.show.name
                 self.success = search.snatchEpisode(searchResult[0])
 
                 # give the CPU a break
@@ -221,6 +223,7 @@ class BacklogQueueItem(generic_queue.QueueItem):
                     for result in searchResult:
                         # just use the first result for now
                         logger.log(u"Downloading " + result.name + " from " + result.provider.name)
+			result.showName = self.show.name
                         search.snatchEpisode(result)
 
                         # give the CPU a break
@@ -271,6 +274,7 @@ class FailedQueueItem(generic_queue.QueueItem):
                 for result in searchResult:
                     # just use the first result for now
                     logger.log(u"Downloading " + result.name + " from " + result.provider.name)
+		    result.showName = self.show.name		   
                     search.snatchEpisode(result)
 
                     # give the CPU a break
