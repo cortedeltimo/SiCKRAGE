@@ -61,7 +61,7 @@ class TransmissionAPI(GenericClient):
         }
 
         if sickbeard.TORRENT_PATH:
-            arguments['download-dir'] = sickbeard.TORRENT_PATH + "/" + result.showName + "/"
+            arguments['download-dir'] = sickbeard.TORRENT_PATH + "/" + result.show.name + "/"
 
         post_data = json.dumps({'arguments': arguments,
                                 'method': 'torrent-add'})
@@ -78,7 +78,7 @@ class TransmissionAPI(GenericClient):
         }
 
         if sickbeard.TORRENT_PATH:
-            arguments['download-dir'] = sickbeard.TORRENT_PATH + "/" + result.showName + "/"
+            arguments['download-dir'] = sickbeard.TORRENT_PATH + "/" + result.show.name + "/"
 
         post_data = json.dumps({'arguments': arguments,
                                 'method': 'torrent-add'})
