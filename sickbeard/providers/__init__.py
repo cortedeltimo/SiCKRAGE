@@ -24,15 +24,15 @@ from os import sys
 from random import shuffle
 
 import sickbeard
-from sickbeard.providers import (abnormal, alpharatio, archetorrent, binsearch, bitcannon, btn, cpasbien, danishbits, elitetorrent, filelist, gftracker,
-                                 hd4free, hdbits, hdspace, hdtorrents, hdtorrents_it, horriblesubs, hounddawgs, ilcorsaronero, immortalseed, iptorrents,
-                                 limetorrents, morethantv, ncore, nebulance, newpct, norbits, nyaa, omgwtfnzbs, pretome, rarbg, scc, scenetime, shazbat,
-                                 skytorrents, speedcd, thepiratebay, tntvillage, tokyotoshokan, torrent9, torrentbytes, torrentday, torrentleech,
-                                 torrentproject, torrentz, tvchaosuk, xthor, yggtorrent)
+from sickbeard.providers import (abnormal, alpharatio, archetorrent, binsearch, bitcannon, bjshare, btn, cpasbien, danishbits, elitetorrent, filelist,
+                                 gftracker, gimmepeers, hd4free, hdbits, hdspace, hdtorrents, hdtorrents_it, horriblesubs, hounddawgs, ilcorsaronero,
+                                 immortalseed, iptorrents, limetorrents, morethantv, ncore, nebulance, newpct, norbits, nyaa, omgwtfnzbs, pretome, rarbg, scc,
+                                 scenetime, shazbat, skytorrents, speedcd, thepiratebay, tntvillage, tokyotoshokan, torrent9, torrentbytes, torrentday,
+                                 torrentleech, torrentproject, torrentz, tvchaosuk, xthor, yggtorrent)
 
 __all__ = [
-    'abnormal', 'alpharatio', 'archetorrent', 'binsearch', 'bitcannon', 'btn', 'cpasbien', 'danishbits',
-    'elitetorrent', 'filelist', 'gftracker', 'hd4free', 'hdbits', 'hdspace', 'hdtorrents', 'hdtorrents_it',
+    'abnormal', 'alpharatio', 'archetorrent', 'binsearch', 'bitcannon', 'bjshare', 'btn', 'cpasbien', 'danishbits',
+    'elitetorrent', 'filelist', 'gftracker', 'gimmepeers', 'hd4free', 'hdbits', 'hdspace', 'hdtorrents', 'hdtorrents_it',
     'horriblesubs', 'hounddawgs', 'ilcorsaronero', 'immortalseed', 'iptorrents', 'limetorrents', 'morethantv',
     'ncore', 'nebulance', 'newpct', 'norbits', 'nyaa', 'omgwtfnzbs', 'pretome', 'rarbg', 'scc', 'scenetime',
     'shazbat', 'skytorrents', 'speedcd', 'thepiratebay', 'tntvillage', 'tokyotoshokan', 'torrent9',
@@ -53,7 +53,7 @@ def sortedProviderList(randomize=False):
 
     # add all enabled providers first
     for curModule in providerDict:
-        if providerDict[curModule] not in newList and providerDict[curModule].is_enabled():
+        if providerDict[curModule] not in newList and providerDict[curModule].is_enabled:
             newList.append(providerDict[curModule])
 
     # add any modules that are missing from that list
@@ -95,11 +95,11 @@ def check_enabled_providers():
     if not sickbeard.DEVELOPER:
         backlog_enabled, daily_enabled = False, False
         for provider in sortedProviderList():
-            if provider.is_active():
-                if provider.enable_daily:
+            if provider.is_active:
+                if provider.enable_daily and provider.can_daily:
                     daily_enabled = True
 
-                if provider.enable_backlog:
+                if provider.enable_backlog and provider.can_backlog:
                     backlog_enabled = True
 
                 if backlog_enabled and daily_enabled:
